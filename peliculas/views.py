@@ -122,6 +122,9 @@ def actualizar_peliculas(request, pelicula_id):
     pelicula.anio = anio
     pelicula.calificacion = calificacion
     
+    # Actualizar imagen
+    pelicula.imagen = datos.get("imagen", pelicula.imagen)
+    
     pelicula.save()    
           
     return JsonResponse({
