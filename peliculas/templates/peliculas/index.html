@@ -1,0 +1,59 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blockbuster</title>
+    <link
+        rel="stylesheet"
+        href="{% static 'peliculas/styles.css' %}"
+    >
+</head>
+<body>
+    <header>
+        <h1>Catálogo de películas</h1>
+    </header>
+
+    <main>
+        <h2>Películas disponibles</h2>
+
+        <div class="contenedor">
+            {% for pelicula in peliculas %}
+
+                <div class="tarjeta">
+                    {% if pelicula.imagen %}
+                        <img
+                            src="{% static pelicula.imagen %}"
+                            alt="{{ pelicula.titulo }}"
+                            class="poster"
+                        >
+                    {% endif %}
+
+                    <div class="informacion">
+                        <h3>{{ pelicula.titulo }}</h3>
+
+                        <p>
+                            <strong>Género:</strong>
+                            {{ pelicula.genero }}
+                        </p>
+
+                        <p>
+                            <strong>Año:</strong>
+                            {{ pelicula.anio }}
+                        </p>
+
+                        <p>
+                            <strong>Calificación:</strong>
+                            {{ pelicula.calificacion }}/10 ⭐
+                        </p>
+                    </div>
+                </div>
+            {% empty %}
+                <p>No hay películas registradas.</p>
+            {% endfor %}    
+        </div>
+    </main>
+</body>
+</html>
